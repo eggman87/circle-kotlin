@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">CircleCIAndroid</string>
+    <string name="login_token_hint">API Token</string>
+    <string name="login_enter_token_description">Please enter in your API Token:</string>
+    <string name="login_btn_authenticate">Authenticate</string>
+</resources>
