@@ -30,8 +30,6 @@ class StartActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Toast.makeText(this, "loaded user! ", Toast.LENGTH_LONG).show()
-
         CircleApplication.graph.inject(this)
 
         setContentView(R.layout.activity_home)
