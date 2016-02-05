@@ -46,5 +46,6 @@ class StartActivity : AppCompatActivity(){
 
     private fun onProjectsLoaded(projects:List<Project>) {
         Toast.makeText(this, "projects loaded, count= " + projects.size, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "branches loaded, count= " + projects[0].branches.size, Toast.LENGTH_LONG).show()
     }
 }
