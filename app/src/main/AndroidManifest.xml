@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.StartActivity" android:label="dude wtf"/>
+        <activity android:name=".ui.StartActivity"/>
     </application>
 
 </manifest>
