@@ -54,13 +54,16 @@ class AppModule(private val app:Application) {
             if (chain != null) {
                 var request = chain.request();
 
+                val token = session.getCircleToken();
+
                 val httpUrl = request.httpUrl().newBuilder()
-                        .addQueryParameter("circle-token", session.getCircleToken())
-                        .build()
+                if (token != null) {
+                    httpUrl.addQueryParameter("circle-token", token)
+                }
 
                 request = request.newBuilder()
                         .header("Accept", "application/json")
-                        .url(httpUrl)
+                        .url(httpUrl.build())
                         .build()
 
                 return@Interceptor chain.proceed(request)
