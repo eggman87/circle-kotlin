@@ -64,7 +64,7 @@ class JsonSharedPreferencesSesson(val context:Context) : Session {
         val json = Gson().toJson(session)
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        prefs.edit().putString(KEY_SESSION, json)
+        prefs.edit().putString(KEY_SESSION, json).apply()
     }
 
 }

@@ -34,13 +34,16 @@ class ProjectListAdapter(val projects:List<Project>): RecyclerView.Adapter<Proje
     class ProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         lateinit var tvTitle:TextView
+        lateinit var tvAuthors:TextView
 
         init {
             tvTitle = itemView.findViewById(R.id.list_item_project_tv_title) as TextView
+            tvAuthors = itemView.findViewById(R.id.list_item_project_tv_authors) as TextView
         }
 
         fun bindProject(project:Project) {
             tvTitle.text = project.reponame
+            tvAuthors.text = project.username
         }
     }
 }

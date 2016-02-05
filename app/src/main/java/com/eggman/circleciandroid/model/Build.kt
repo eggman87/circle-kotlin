@@ -10,4 +10,5 @@ import java.util.*
  */
 data class Build(val outcome:String, val status:String, @SerializedName("buildNum") val buildNumber:Int,
                  val vcsRevision:String, val pushedAt:Calendar, val addedAt:Calendar) {
+
 }

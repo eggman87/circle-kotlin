@@ -1,6 +1,5 @@
 package com.eggman.circleciandroid
 
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -14,7 +13,6 @@ import com.eggman.circleciandroid.ui.StartActivity
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
-import kotlin.jvm.javaClass
 
 class LaunchActivity : AppCompatActivity() {
 
@@ -24,8 +22,8 @@ class LaunchActivity : AppCompatActivity() {
     @Inject
     lateinit var circleApi:CircleApi
 
-    lateinit var etToken:EditText
-    lateinit var btnLogin:Button
+    private val etToken: EditText by lazy { findViewById(R.id.act_launch_et_circle_token) as EditText }
+    private val btnLogin: Button by lazy { findViewById(R.id.act_launch_btn_authenticate) as Button }
 
     companion object {
         const val TAG = "LaunchActivity"
@@ -38,15 +36,20 @@ class LaunchActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_launch)
 
-        etToken = findViewById(R.id.act_launch_et_circle_token) as EditText
-        btnLogin = findViewById(R.id.act_launch_btn_authenticate) as Button
-
-        checkState()
-
         btnLogin.setOnClickListener({
             session.setCircleToken(etToken.text.toString())
             checkState()
         })
+
+        if (savedInstanceState == null) {
+            checkState()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        session.onLifecyclePause()
     }
 
     private fun checkState() {

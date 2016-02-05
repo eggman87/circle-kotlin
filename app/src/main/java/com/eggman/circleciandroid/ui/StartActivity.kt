@@ -47,8 +47,15 @@ class StartActivity : AppCompatActivity(){
             .subscribe({ onProjectsLoaded(it) })
     }
 
+    override fun onPause() {
+        super.onPause()
+
+        session.onLifecyclePause()
+    }
+
     private fun onProjectsLoaded(projects:List<Project>) {
         rvProjects.layoutManager = LinearLayoutManager(this)
         rvProjects.adapter = ProjectListAdapter(projects)
+
     }
 }
