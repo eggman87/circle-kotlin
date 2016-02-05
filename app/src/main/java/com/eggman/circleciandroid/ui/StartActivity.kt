@@ -6,7 +6,11 @@ import android.widget.TextView
 import android.widget.Toast
 import com.eggman.circleciandroid.CircleApplication
 import com.eggman.circleciandroid.R
+import com.eggman.circleciandroid.model.Project
+import com.eggman.circleciandroid.service.CircleApi
 import com.eggman.circleciandroid.session.Session
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -17,7 +21,9 @@ import javax.inject.Inject
 class StartActivity : AppCompatActivity(){
 
     @Inject
-    lateinit var session: Session
+    lateinit var session:Session
+    @Inject
+    lateinit var circleApi:CircleApi
 
     lateinit var etHome: TextView
 
@@ -33,5 +39,14 @@ class StartActivity : AppCompatActivity(){
         etHome = findViewById(R.id.act_home_et_welcome) as TextView
 
         etHome.setText("Welcome " + session.getUser()?.name)
+
+        circleApi.getProjects()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ onProjectsLoaded(it) })
+    }
+
+    private fun onProjectsLoaded(projects:List<Project>) {
+        Toast.makeText(this, "projects loaded, count= " + projects.size, Toast.LENGTH_LONG).show()
     }
 }
