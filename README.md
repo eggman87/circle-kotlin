@@ -7,3 +7,5 @@ The application will allow you to view your projects, builds, branches - and let
 This is mainly being used as a way to learn [Kotlin](https://kotlinlang.org/), and hopefully help others who are trying to learn it.  
 
 [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=56b788274e6a9701004657f3&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/56b788274e6a9701004657f3/build/latest)
+
+[![Circle CI](https://circleci.com/gh/eggman87/circle-kotlin.svg?style=svg)](https://circleci.com/gh/eggman87/circle-kotlin)
