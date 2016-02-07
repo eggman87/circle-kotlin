@@ -1,6 +1,7 @@
 package com.eggman.circleciandroid.ui
 
 import android.os.Bundle
+import com.eggman.circleciandroid.R
 import com.eggman.circleciandroid.model.Project
 import kotlinx.android.synthetic.main.activity_project_detail.*
 
@@ -19,8 +20,12 @@ class ProjectDetailActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        project = intent.extras.getParcelable(EXTRA_PROJECT)
+        setContentView(R.layout.activity_project_detail)
 
-        tvTitle.text = project.reponame
+        project = intent.extras.get(EXTRA_PROJECT) as Project
+
+        title = project.reponame
+        tvLanguage.text = project.language
+        tvVcsUrl.text = project.vcsUrl
     }
 }

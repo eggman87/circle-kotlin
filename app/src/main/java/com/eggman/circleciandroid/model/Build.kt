@@ -4,7 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.eggman.circleciandroid.extension.createParcel
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 /**
  * This class is responsible for x.
@@ -16,10 +15,11 @@ data class Build(val outcome:String,
                  @SerializedName("buildNum")
                  val buildNumber:Int,
                  val vcsRevision:String,
-                 val pushedAt:Calendar,
-                 val addedAt:Calendar) : Parcelable {
+                 val pushedAt:String,
+                 val addedAt:String) : Parcelable {
 
     companion object {
+        @JvmField
         val CREATOR = createParcel { Build(it) }
     }
 
@@ -28,8 +28,8 @@ data class Build(val outcome:String,
             parcelIn.readString(),
             parcelIn.readInt(),
             parcelIn.readString(),
-            parcelIn.readSerializable() as Calendar,
-            parcelIn.readSerializable() as Calendar
+            parcelIn.readString(),
+            parcelIn.readString()
     )
 
     override fun describeContents() = 0
@@ -39,7 +39,7 @@ data class Build(val outcome:String,
         dest.writeString(status)
         dest.writeInt(buildNumber)
         dest.writeString(vcsRevision)
-        dest.writeSerializable(pushedAt)
-        dest.writeSerializable(addedAt)
+        dest.writeString(pushedAt)
+        dest.writeString(addedAt)
     }
 }

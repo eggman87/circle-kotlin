@@ -15,6 +15,7 @@ data class Project (val reponame:String,
                     val branches:Map<String, Branch>) : Parcelable {
 
     companion object {
+        @JvmField @Suppress("unused")
         val CREATOR = createParcel { Project(it) }
     }
 
@@ -23,7 +24,7 @@ data class Project (val reponame:String,
             parcelIn.readString(),
             parcelIn.readString(),
             parcelIn.readString(),
-            mapOf<String, Branch>().apply {
+            mutableMapOf<String, Branch>().apply {
                 parcelIn.readMap(this, Branch::class.java.classLoader)
             }
     )

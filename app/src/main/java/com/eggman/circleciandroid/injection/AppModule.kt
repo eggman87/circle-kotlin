@@ -5,6 +5,9 @@ import android.content.Context
 import com.eggman.circleciandroid.service.CircleApi
 import com.eggman.circleciandroid.session.JsonSharedPreferencesSesson
 import com.eggman.circleciandroid.session.Session
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.squareup.okhttp.Interceptor
 import com.squareup.okhttp.OkHttpClient
 import com.squareup.okhttp.logging.HttpLoggingInterceptor
@@ -34,16 +37,23 @@ class AppModule(private val app:Application) {
 
     @Provides
     @Singleton
-    fun provideCircleApi(client: OkHttpClient):CircleApi {
+    fun provideCircleApi(client: OkHttpClient, gson: Gson):CircleApi {
         val retrofit = Retrofit.Builder()
                 .baseUrl("https://circleci.com")
                 .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build()
 
 
         return retrofit.create(CircleApi::class.java)
+    }
+
+    @Provides
+    fun provideGson():Gson {
+        val gson = GsonBuilder()
+        gson.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+        return gson.create()
     }
 
     @Provides

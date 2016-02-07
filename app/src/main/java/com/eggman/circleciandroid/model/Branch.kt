@@ -10,21 +10,22 @@ import com.eggman.circleciandroid.extension.createParcel
  * @since 2/5/16
  */
 data class Branch(val pusherLogins:List<String>,
-                  val lastNonSuccess:Build,
-                  val lastSuccess:Build,
-                  val recentBuilds:List<Build>) : Parcelable {
+                  val lastNonSuccess:Build?,
+                  val lastSuccess:Build?,
+                  val recentBuilds:List<Build?>) : Parcelable {
 
     companion object {
+        @JvmField @Suppress("unused")
         val CREATOR = createParcel { Branch(it) }
     }
 
     protected constructor(parcelIn: Parcel) : this (
-            listOf<String>().apply {
+            mutableListOf<String>().apply {
                 parcelIn.readStringList(this)
             },
             parcelIn.readParcelable(Build::class.java.classLoader),
             parcelIn.readParcelable(Build::class.java.classLoader),
-            listOf<Build>().apply {
+            mutableListOf<Build>().apply {
                 parcelIn.readTypedList(this, Build.CREATOR)
             }
     )
@@ -32,7 +33,7 @@ data class Branch(val pusherLogins:List<String>,
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
-        dest.writeList(pusherLogins)
+        dest.writeStringList(pusherLogins)
         dest.writeParcelable(lastNonSuccess, flags)
         dest.writeParcelable(lastSuccess, flags)
         dest.writeTypedList(recentBuilds)

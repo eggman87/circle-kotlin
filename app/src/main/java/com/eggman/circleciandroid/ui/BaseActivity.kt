@@ -15,18 +15,36 @@ open class BaseActivity : AppCompatActivity() {
     @Inject
     lateinit var bus:Bus
 
+    var isRegistered:Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         CircleApplication.graph.inject(this)
 
-        bus.register(this)
+        registerBus()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        registerBus()
     }
 
     override fun onPause() {
         super.onPause()
 
-        bus.unregister(this)
+        if (isRegistered) {
+            bus.unregister(this)
+            isRegistered = false
+        }
+    }
+
+    fun registerBus() {
+        if (!isRegistered) {
+            bus.register(this)
+            isRegistered = true
+        }
     }
 
 }
