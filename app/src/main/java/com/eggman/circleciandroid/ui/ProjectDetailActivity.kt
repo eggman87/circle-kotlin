@@ -19,7 +19,7 @@ class ProjectDetailActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        project = intent.extras.get(EXTRA_PROJECT) as Project
+        project = intent.extras.getParcelable(EXTRA_PROJECT)
 
         tvTitle.text = project.reponame
     }
