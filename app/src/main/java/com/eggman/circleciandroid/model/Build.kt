@@ -20,8 +20,8 @@ data class Build(val outcome:String,
 
     companion object {
         val CREATOR = object : Parcelable.Creator<Build> {
-            override fun createFromParcel(`in`: Parcel): Build {
-                return Build(`in`)
+            override fun createFromParcel(parcel: Parcel): Build {
+                return Build(parcel)
             }
 
             override fun newArray(size: Int): Array<Build?> {

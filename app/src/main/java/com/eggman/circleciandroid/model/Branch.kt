@@ -15,8 +15,8 @@ data class Branch(val pusherLogins:List<String>,
 
     companion object {
         val CREATOR = object : Parcelable.Creator<Branch> {
-            override fun createFromParcel(`in`: Parcel): Branch {
-                return Branch(`in`)
+            override fun createFromParcel(parcel: Parcel): Branch {
+                return Branch(parcel)
             }
 
             override fun newArray(size: Int): Array<Branch?> {

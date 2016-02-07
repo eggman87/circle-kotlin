@@ -15,8 +15,8 @@ data class Project (val reponame:String,
 
     companion object {
         val CREATOR = object : Parcelable.Creator<Project> {
-            override fun createFromParcel(`in`: Parcel): Project {
-                return Project(`in`)
+            override fun createFromParcel(parcel: Parcel): Project {
+                return Project(parcel)
             }
 
             override fun newArray(size: Int): Array<Project?> {
@@ -35,9 +35,7 @@ data class Project (val reponame:String,
             }
     )
 
-    override fun describeContents(): Int {
-        throw UnsupportedOperationException()
-    }
+    override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.writeString(reponame)
