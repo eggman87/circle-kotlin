@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName
  */
 data class Build(val outcome:String,
                  val status:String,
-                 @SerializedName("buildNum")
+                 @SerializedName("build_num")
                  val buildNumber:Int,
                  val vcsRevision:String,
                  val pushedAt:String,
