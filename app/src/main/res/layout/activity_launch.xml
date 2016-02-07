@@ -16,12 +16,12 @@
         android:layout_height="wrap_content"
         android:text="@string/login_enter_token_description"/>
     <EditText
-        android:id="@+id/act_launch_et_circle_token"
+        android:id="@+id/etCircleToken"
         android:layout_width="match_parent"
         android:layout_height='wrap_content'
         android:hint="@string/login_token_hint"/>
     <Button
-        android:id="@+id/act_launch_btn_authenticate"
+        android:id="@+id/btnAuthenticate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_btn_authenticate"/>

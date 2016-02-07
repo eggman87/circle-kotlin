@@ -4,26 +4,22 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
 import com.eggman.circleciandroid.model.User
 import com.eggman.circleciandroid.service.CircleApi
 import com.eggman.circleciandroid.session.Session
-import com.eggman.circleciandroid.ui.StartActivity
+import com.eggman.circleciandroid.ui.ProjectListActivity
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
+
+import kotlinx.android.synthetic.main.activity_launch.*
 
 class LaunchActivity : AppCompatActivity() {
 
     @Inject
     lateinit var session:Session
-
     @Inject
     lateinit var circleApi:CircleApi
-
-    private val etToken: EditText by lazy { findViewById(R.id.act_launch_et_circle_token) as EditText }
-    private val btnLogin: Button by lazy { findViewById(R.id.act_launch_btn_authenticate) as Button }
 
     companion object {
         const val TAG = "LaunchActivity"
@@ -36,8 +32,8 @@ class LaunchActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_launch)
 
-        btnLogin.setOnClickListener({
-            session.setCircleToken(etToken.text.toString())
+        btnAuthenticate.setOnClickListener({
+            session.setCircleToken(etCircleToken.text.toString())
             checkState()
         })
 
@@ -69,10 +65,8 @@ class LaunchActivity : AppCompatActivity() {
     private fun onUserLoaded(user:User) {
         session.setUser(user)
 
-        val homeIntent = Intent(this, StartActivity::class.java)
+        val homeIntent = Intent(this, ProjectListActivity::class.java)
         startActivity(homeIntent)
-
-
     }
 
     private fun onUserLoadError(error:Throwable) {

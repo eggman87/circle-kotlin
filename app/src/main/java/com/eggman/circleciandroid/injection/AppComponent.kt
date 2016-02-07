@@ -1,7 +1,7 @@
 package com.eggman.circleciandroid.injection
 
 import com.eggman.circleciandroid.LaunchActivity
-import com.eggman.circleciandroid.ui.StartActivity
+import com.eggman.circleciandroid.ui.ProjectListActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -15,6 +15,6 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(AppModule::class))
 interface AppComponent {
 
-    fun inject(act: StartActivity)
+    fun inject(act: ProjectListActivity)
     fun inject(act: LaunchActivity)
 }
