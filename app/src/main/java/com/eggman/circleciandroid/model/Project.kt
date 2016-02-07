@@ -2,6 +2,7 @@ package com.eggman.circleciandroid.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.eggman.circleciandroid.extension.createParcel
 
 /**
  * Created by mharris on 2/4/16.
@@ -14,15 +15,7 @@ data class Project (val reponame:String,
                     val branches:Map<String, Branch>) : Parcelable {
 
     companion object {
-        val CREATOR = object : Parcelable.Creator<Project> {
-            override fun createFromParcel(parcel: Parcel): Project {
-                return Project(parcel)
-            }
-
-            override fun newArray(size: Int): Array<Project?> {
-                return arrayOfNulls(size)
-            }
-        }
+        val CREATOR = createParcel { Project(it) }
     }
 
     protected constructor(parcelIn: Parcel) : this (

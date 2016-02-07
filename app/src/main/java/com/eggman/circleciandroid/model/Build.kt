@@ -2,6 +2,7 @@ package com.eggman.circleciandroid.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.eggman.circleciandroid.extension.createParcel
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
@@ -19,15 +20,7 @@ data class Build(val outcome:String,
                  val addedAt:Calendar) : Parcelable {
 
     companion object {
-        val CREATOR = object : Parcelable.Creator<Build> {
-            override fun createFromParcel(parcel: Parcel): Build {
-                return Build(parcel)
-            }
-
-            override fun newArray(size: Int): Array<Build?> {
-                return arrayOfNulls(size)
-            }
-        }
+        val CREATOR = createParcel { Build(it) }
     }
 
     protected constructor(parcelIn: Parcel) : this (

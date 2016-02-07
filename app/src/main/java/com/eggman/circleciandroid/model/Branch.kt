@@ -2,6 +2,7 @@ package com.eggman.circleciandroid.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.eggman.circleciandroid.extension.createParcel
 
 /**
  * This class is responsible for x.
@@ -14,15 +15,7 @@ data class Branch(val pusherLogins:List<String>,
                   val recentBuilds:List<Build>) : Parcelable {
 
     companion object {
-        val CREATOR = object : Parcelable.Creator<Branch> {
-            override fun createFromParcel(parcel: Parcel): Branch {
-                return Branch(parcel)
-            }
-
-            override fun newArray(size: Int): Array<Branch?> {
-                return arrayOfNulls(size)
-            }
-        }
+        val CREATOR = createParcel { Branch(it) }
     }
 
     protected constructor(parcelIn: Parcel) : this (
