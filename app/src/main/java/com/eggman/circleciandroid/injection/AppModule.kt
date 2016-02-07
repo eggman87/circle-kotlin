@@ -8,6 +8,7 @@ import com.eggman.circleciandroid.session.Session
 import com.squareup.okhttp.Interceptor
 import com.squareup.okhttp.OkHttpClient
 import com.squareup.okhttp.logging.HttpLoggingInterceptor
+import com.squareup.otto.Bus
 
 import dagger.Module
 import dagger.Provides
@@ -85,6 +86,12 @@ class AppModule(private val app:Application) {
     @Singleton
     fun provideSession(context:Context):Session {
         return JsonSharedPreferencesSesson(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBus(): Bus {
+        return Bus()
     }
 
 }

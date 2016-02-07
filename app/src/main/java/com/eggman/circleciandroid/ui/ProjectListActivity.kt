@@ -1,5 +1,6 @@
 package com.eggman.circleciandroid.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.eggman.circleciandroid.CircleApplication
@@ -7,11 +8,12 @@ import com.eggman.circleciandroid.R
 import com.eggman.circleciandroid.model.Project
 import com.eggman.circleciandroid.service.CircleApi
 import com.eggman.circleciandroid.session.Session
+import com.eggman.circleciandroid.ui.event.ProjectClickedEvent
+import com.squareup.otto.Subscribe
+import kotlinx.android.synthetic.main.activity_project_list.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
-
-import kotlinx.android.synthetic.main.activity_home.*
 
 /**
  * This class is responsible for x.
@@ -30,9 +32,9 @@ class ProjectListActivity : BaseActivity(){
 
         CircleApplication.graph.inject(this)
 
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_project_list)
 
-        etWelcome.text = "Welcome " + session.getUser()?.name + ", select a project below."
+        title = session.getUser()?.name
 
         circleApi.getProjects()
             .subscribeOn(Schedulers.io())
@@ -48,6 +50,14 @@ class ProjectListActivity : BaseActivity(){
 
     private fun onProjectsLoaded(projects:List<Project>) {
         rvProjects.layoutManager = LinearLayoutManager(this)
-        rvProjects.adapter = ProjectListAdapter(projects)
+        rvProjects.adapter = ProjectListAdapter(projects, bus)
+    }
+
+    @Subscribe
+    @Suppress("unused")
+    fun onProjectClicked(event: ProjectClickedEvent) {
+        val intent = Intent(this, ProjectDetailActivity::class.java)
+        intent.putExtra(ProjectDetailActivity.EXTRA_PROJECT, event.project)
+        startActivity(intent)
     }
 }
