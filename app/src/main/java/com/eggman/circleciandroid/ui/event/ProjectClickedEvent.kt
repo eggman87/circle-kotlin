@@ -4,7 +4,7 @@ import com.eggman.circleciandroid.model.Project
 
 /**
  * Created by mharris on 2/6/16.
- * DispatchHealth.
+ * EggmanProjects.
  */
 data class ProjectClickedEvent(val project: Project) {
 }

@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 /**
  * Created by mharris on 2/6/16.
- * DispatchHealth.
+ * EggmanProjects.
  */
 open class BaseActivity : AppCompatActivity() {
 

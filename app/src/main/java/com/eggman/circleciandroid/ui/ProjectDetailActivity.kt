@@ -6,7 +6,7 @@ import kotlinx.android.synthetic.main.activity_project_detail.*
 
 /**
  * Created by mharris on 2/6/16.
- * DispatchHealth.
+ * EggmanProjects.
  */
 class ProjectDetailActivity : BaseActivity() {
 

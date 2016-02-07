@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 /**
  * Created by mharris on 2/4/16.
- * DispatchHealth.
+ * EggmanProjects.
  */
 data class Project (val reponame:String,
                     val username:String,
