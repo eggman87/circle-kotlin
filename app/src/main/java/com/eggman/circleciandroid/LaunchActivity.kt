@@ -3,16 +3,16 @@ package com.eggman.circleciandroid
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import com.eggman.circleciandroid.model.User
 import com.eggman.circleciandroid.service.CircleApi
 import com.eggman.circleciandroid.session.Session
 import com.eggman.circleciandroid.ui.ProjectListActivity
+import com.eggman.circleciandroid.ui.login.LoginActivity
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
-
-import kotlinx.android.synthetic.main.activity_launch.*
 
 class LaunchActivity : AppCompatActivity() {
 
@@ -32,14 +32,7 @@ class LaunchActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_launch)
 
-        btnAuthenticate.setOnClickListener({
-            session.setCircleToken(etCircleToken.text.toString())
-            checkState()
-        })
-
-        if (savedInstanceState == null) {
-            checkState()
-        }
+        Handler().postDelayed({ checkState() }, 750)
     }
 
     override fun onPause() {
@@ -52,6 +45,9 @@ class LaunchActivity : AppCompatActivity() {
         var circleToken = session.getCircleToken()
         if (circleToken != null) {
             tryToLoadUserAndAdvance()
+        } else {
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
         }
     }
 
