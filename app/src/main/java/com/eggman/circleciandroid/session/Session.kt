@@ -11,7 +11,7 @@ interface Session {
 
     fun getCircleToken():String?
 
-    fun setCircleToken(circleToken:String)
+    fun setCircleToken(circleToken:String?)
 
     fun onLifecyclePause()
 

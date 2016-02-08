@@ -27,7 +27,7 @@ class JsonSharedPreferencesSesson(val context:Context) : Session {
         return session.circleToken
     }
 
-    override fun setCircleToken(circleToken: String) {
+    override fun setCircleToken(circleToken: String?) {
         session.circleToken = circleToken
         needsToSave = true
     }

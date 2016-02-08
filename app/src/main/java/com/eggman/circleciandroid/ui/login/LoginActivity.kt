@@ -10,7 +10,7 @@ import com.eggman.circleciandroid.model.User
 import com.eggman.circleciandroid.service.CircleApi
 import com.eggman.circleciandroid.session.Session
 import com.eggman.circleciandroid.ui.BaseActivity
-import com.eggman.circleciandroid.ui.ProjectListActivity
+import com.eggman.circleciandroid.ui.project.ProjectListActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers

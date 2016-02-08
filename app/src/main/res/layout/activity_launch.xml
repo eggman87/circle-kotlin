@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:background="@color/colorPrimary"
-    tools:context="com.eggman.circleciandroid.LaunchActivity">
+    tools:context=".ui.LaunchActivity">
 
 
     <TextView

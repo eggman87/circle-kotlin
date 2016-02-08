@@ -1,14 +1,16 @@
-package com.eggman.circleciandroid
+package com.eggman.circleciandroid.ui
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import com.eggman.circleciandroid.CircleApplication
+import com.eggman.circleciandroid.R
 import com.eggman.circleciandroid.model.User
 import com.eggman.circleciandroid.service.CircleApi
 import com.eggman.circleciandroid.session.Session
-import com.eggman.circleciandroid.ui.ProjectListActivity
+import com.eggman.circleciandroid.ui.project.ProjectListActivity
 import com.eggman.circleciandroid.ui.login.LoginActivity
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -17,9 +19,9 @@ import javax.inject.Inject
 class LaunchActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var session:Session
+    lateinit var session: Session
     @Inject
-    lateinit var circleApi:CircleApi
+    lateinit var circleApi: CircleApi
 
     companion object {
         const val TAG = "LaunchActivity"
@@ -58,7 +60,7 @@ class LaunchActivity : AppCompatActivity() {
             .subscribe({ onUserLoaded(it) }, { onUserLoadError(it) })
     }
 
-    private fun onUserLoaded(user:User) {
+    private fun onUserLoaded(user: User) {
         session.setUser(user)
 
         val homeIntent = Intent(this, ProjectListActivity::class.java)

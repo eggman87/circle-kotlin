@@ -4,6 +4,7 @@
     <string name="login_enter_token_description">Please enter in your API Token:</string>
     <string name="login_btn_authenticate">Authenticate</string>
     <string name="login_title">Login</string>
+    <string name="login_action_logout">Logout</string>
     <string name="login_error">Unable to load user. Please make sure the token is valid and you have a network connection.</string>
     <string name="launch_title">Circle CI Android</string>
 </resources>

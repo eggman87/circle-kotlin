@@ -1,8 +1,9 @@
-package com.eggman.circleciandroid.ui
+package com.eggman.circleciandroid.ui.project
 
 import android.os.Bundle
 import com.eggman.circleciandroid.R
 import com.eggman.circleciandroid.model.Project
+import com.eggman.circleciandroid.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_project_detail.*
 
 /**

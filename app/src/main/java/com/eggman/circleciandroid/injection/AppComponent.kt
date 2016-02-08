@@ -1,8 +1,8 @@
 package com.eggman.circleciandroid.injection
 
-import com.eggman.circleciandroid.LaunchActivity
+import com.eggman.circleciandroid.ui.LaunchActivity
 import com.eggman.circleciandroid.ui.BaseActivity
-import com.eggman.circleciandroid.ui.ProjectListActivity
+import com.eggman.circleciandroid.ui.project.ProjectListActivity
 import com.eggman.circleciandroid.ui.login.LoginActivity
 import dagger.Component
 import javax.inject.Singleton
